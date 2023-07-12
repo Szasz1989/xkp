@@ -3,7 +3,7 @@ import { ReactComponent as Logo } from '../layout/assets/logo.svg';
 
 function Navbar() {
   return (
-    <nav className="max-w-screen-xl w-full py-3 px-6 mb-12 mx-auto">
+    <nav className="max-w-screen-xl w-full py-3 px-6 mb-12 mx-auto z-10">
       <div className="mx-auto flex flex-col items-center md:flex-row">
         <div className="flex-none">
           <Link to="/">

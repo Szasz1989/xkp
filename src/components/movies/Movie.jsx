@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom';
 
 function Movie({ movie: { id, title, release_date, poster_path } }) {
   return (
-    <Link to={`/${id}`} className="flex flex-col items-center justify-between">
+    <Link
+      to={`/details/${id}`}
+      className="flex flex-col items-center justify-between"
+    >
       <div>
         <img
           src={`https://image.tmdb.org/t/p/w500/${poster_path}`}

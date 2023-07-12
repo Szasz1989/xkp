@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 function PopularMovies() {
   const [popularMovies, setPopularMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchPopularMovies = async () => {
@@ -13,27 +14,32 @@ function PopularMovies() {
           `https://api.themoviedb.org/3/movie/popular?api_key=${config.apiKey}`
         );
         setPopularMovies(response.data.results);
-        console.log(popularMovies);
+        setLoading(false);
       } catch (error) {
         console.error('Error fetching movies:', error);
+        setLoading(false);
       }
     };
 
     fetchPopularMovies();
   }, []);
 
-  return (
-    <div>
-      <h2>Popular Movies</h2>
-      <ul>
-        {popularMovies.map((movie) => (
-          <Link to={`movie-details.html?id=${movie.id}`}>
-            <li key={movie.id}>{movie.title}</li>
-          </Link>
-        ))}
-      </ul>
-    </div>
-  );
+  if (!loading) {
+    return (
+      <div>
+        <h2>Popular Movies</h2>
+        <ul>
+          {popularMovies.map((movie) => (
+            <Link to={`movie-details.html?id=${movie.id}`}>
+              <li key={movie.id}>{movie.title}</li>
+            </Link>
+          ))}
+        </ul>
+      </div>
+    );
+  } else {
+    return <Spinner />;
+  }
 }
 
 export default PopularMovies;
