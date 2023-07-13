@@ -9,6 +9,6 @@
   }
 
   .title {
-    @apply text-center font-normal uppercase text-3xl mb-8;
+    @apply text-center font-normal uppercase text-4xl mb-14 tracking-widest;
   }
 }

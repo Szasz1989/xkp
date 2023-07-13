@@ -7,7 +7,7 @@ function Navbar() {
       <div className="mx-auto flex flex-col items-center md:flex-row">
         <div className="flex-none">
           <Link to="/">
-            <Logo className="w-24 h-auto" />
+            <Logo className="w-32 h-auto" />
           </Link>
         </div>
 
@@ -16,10 +16,10 @@ function Navbar() {
             <Link to="/" className="navbar-item">
               Home
             </Link>
-            <Link to="/" className="navbar-item">
+            <Link to="/movies" className="navbar-item">
               Movies
             </Link>
-            <Link to="/" className="navbar-item">
+            <Link to="/series" className="navbar-item">
               Series
             </Link>
           </div>

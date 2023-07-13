@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import config from '../config';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import Spinner from '../components/layout/Spinner';
 import { Link } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
@@ -10,12 +10,20 @@ function MovieDetails() {
   const { id } = useParams();
   const [movieDetails, setMovieDetails] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [movieType, setMovieType] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
       try {
+        const currentUrl = window.location.href;
+        const movieType = currentUrl.includes('movie') ? 'movie' : 'tv';
+        setMovieType(movieType);
+
         const response = await axios.get(
-          `https://api.themoviedb.org/3/movie/${id}?api_key=${config.apiKey}`
+          `https://api.themoviedb.org/3/${movieType || 'movie'}/${id}?api_key=${
+            config.apiKey
+          }`
         );
 
         setMovieDetails(response.data);
@@ -48,14 +56,14 @@ function MovieDetails() {
 
     return (
       <div className="w-full">
-        <Link
-          to="/"
+        <button
+          onClick={() => navigate(-1)}
           className="px-5 py-3 rounded text-mainColor font-semibold border-mainColor border z-10 relative"
         >
-          Back To Home
-        </Link>
+          Go Back
+        </button>
         <div className="w-full flex z-10 relative mt-16 items-center justify-start mb-12">
-          <div className="mr-10 hidden md:block">
+          <div className="mr-16 hidden md:block">
             <img
               className="max-w-sm"
               src={`https://image.tmdb.org/t/p/w500${poster_path}`}
@@ -90,7 +98,7 @@ function MovieDetails() {
             </Link>
           </div>
         </div>
-        <div className="w-full flex-col z-10 relative mt-4 items-center justify-start mb-16">
+        <div className="w-full flex-col z-10 relative mt-4 items-center justify-start">
           <div className="text-mainColor font-semibold uppercase text-xl text-left mb-4 tracking-wide">
             Details
           </div>
@@ -133,7 +141,7 @@ function MovieDetails() {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
-          className="w-screen h-screen absolute z-0 left-0 top-0 opacity-10"
+          className="w-screen h-screen z-0 left-0 top-0 opacity-10 fixed"
         ></div>
       </div>
     );

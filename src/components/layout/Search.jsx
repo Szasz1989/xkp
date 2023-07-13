@@ -16,14 +16,14 @@ function Search() {
   };
 
   return (
-    <div className="m-auto bg-white text-black max-w-screen-sm rounded my-20">
+    <div className="m-auto bg-white text-black max-w-screen-md rounded my-20 z-20 relative">
       <form onSubmit={handleSearch} className="flex justify-between">
         <input
           type="text"
           placeholder="Search..."
           value={searchQuery}
           onChange={handleInputChange}
-          className="rounded p-3 w-full outline-none"
+          className="rounded p-4 w-full outline-none text-xl text-mainColor uppercase tracking-widest font-semibold"
         />
         <button type="submit" className="px-7">
           <FaSearch className="" />

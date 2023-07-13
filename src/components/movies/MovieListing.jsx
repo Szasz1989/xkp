@@ -27,7 +27,7 @@ function MovieListing({ movieType }) {
 
   if (!loading) {
     return (
-      <div className="grid grid-cols-2 gap-4 xl:grid-cols-4 lg:grid-cols-3 md:gap-8">
+      <div className="grid grid-cols-2 gap-4 xl:grid-cols-4 lg:grid-cols-3 md:gap-8 z-20 relative">
         {movies.map((movie) => (
           <Movie key={movie.id} movie={movie} />
         ))}
