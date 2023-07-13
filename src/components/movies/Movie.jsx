@@ -32,7 +32,7 @@ function Movie({
         </h5>
       </div>
 
-      <p className="text-center text-mainColor">
+      <p className="text-center text-mainColor hidden md:block">
         {release_date
           ? `Release: ${release_date}`
           : `First aired: ${first_air_date}`}
